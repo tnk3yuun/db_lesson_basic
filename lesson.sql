@@ -233,7 +233,6 @@ SELECT name, age
 | 山田さん       |   25 |
 | 鈴木たかし     |   20 |
 +----------------+------+
-8 rows in set (0.003 sec)
 
 Q6
 SELECT
