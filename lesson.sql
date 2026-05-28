@@ -142,18 +142,18 @@ VALUES
 
 people 
 INSERT INTO people
-(name, email, department_id, age, gender)
+(name, department_id, age, gender)
 VALUES
-('山田さん', NULL, 1, 25, 1),
-('佐藤さん', NULL, 1, 20, 2),
-('加藤さん', NULL, 1, 28, 1),
-('田中さん', NULL, 2, 22, 2),
-('中田さん', NULL, 2, 25, 2),
-('森田さん', NULL, 2, 26, 1),
-('太郎さん', NULL, 2, 27, 2),
-('さちこさん', NULL, 3, 22, 2),
-('花子さん', NULL, 4, 25, 2),
-('だいすけさん', NULL, 5, 26, 1);
+('山田さん', 1, 25, 1),
+('佐藤さん', 1, 20, 2),
+('加藤さん', 1, 28, 1),
+('田中さん', 2, 22, 2),
+('中田さん', 2, 25, 2),
+('森田さん', 2, 26, 1),
+('太郎さん', 2, 27, 2),
+('さちこさん', 3, 22, 2),
+('花子さん', 4, 25, 2),
+('だいすけさん', 5, 26, 1);
 
 reports
 INSERT INTO reports
@@ -168,50 +168,25 @@ VALUES
 (6, '毎日たくさん寝たいなー'),
 (7, 'つぎはネイル何色にしようかなー'),
 (9, '今日は夜更かししちゃおう'),
-(1, 'ピンク色が好きです'),
-(999,'私は存在しません');
+(1, 'ピンク色が好きです'),;
 
 
 Q4
-UPDATE　people
-SET department_id = 3
-WHERE name = '鈴木たかし';
-
-UPDATE　people
+UPDATE people
 SET department_id = 2
-WHERE name = '田中ゆうこ';
+WHERE name IN ('田中ゆうこ', '不思議けんた', '中村ゆうた');
 
-UPDATE　people
+UPDATE people
 SET department_id = 3
-WHERE name = '福田だいすけ';
+WHERE name IN ('鈴木たかし', '福田だいすけ', '佐藤ゆうり');
 
-UPDATE　people
-SET department_id = 5
-WHERE name = '豊島はなこ';
-
-UPDATE　people
+UPDATE people
 SET department_id = 4
-WHERE name = '山田りょうすけ';
+WHERE name IN ('山田りょうすけ', '高橋らん');
 
-UPDATE　people
-SET department_id = 2
-WHERE name = '不思議けんた';
-
-UPDATE　people
-SET department_id = 3
-WHERE name = '佐藤ゆうり';
-
-UPDATE　people
-SET department_id = 2
-WHERE name = '中村ゆうた';
-
-UPDATE　people
-SET department_id = 4
-WHERE name = '高橋らん';
-
-UPDATE　people
+UPDATE people
 SET department_id = 5
-WHERE name = '加藤りこ';
+WHERE name IN ('豊島はなこ', '加藤りこ');
 
 
 
@@ -246,7 +221,7 @@ WHERE
   department_id　= 1のレコードのデータ修正をしたい
 ORDER BY
   `created_at`;
-  カラムcreated_at`（作成日時）を自ら並び替えたい
+  カラムcreated_at`　作成日時が古い順にレコードを並べたい
 
 Q7　SELECT name
 FROM people
@@ -269,10 +244,11 @@ WHERE (gender = 2 AND age BETWEEN 20 AND 29)
 +--------------+
 
 
-Q8 SELECT 'department_id', age
--> FROM people
+Q8 
+SELECT name, age
+FROM people
 WHERE department_id = 1
-ORDER BY age DESC;
+ORDER BY age ASC;
 
 Q9
 SELECT AVG(age) AS average_age
@@ -293,7 +269,7 @@ FROM people
 JOIN departments
 ON people.department_id = departments.department_id
 JOIN reports
-ON people.person_id = reports.person_id;;
+ON people.person_id = reports.person_id;
 
 +----------------+-----------------+--------------------------------+
 | name           | department_name | content                        |
